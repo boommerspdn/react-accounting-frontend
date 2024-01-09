@@ -8,12 +8,13 @@ import {
   NotFoundRoute,
 } from "@tanstack/react-router";
 import App from "./App";
+
 import HomePage from "./routes/root/page";
 import AboutPage from "./routes/about-page/page";
 import ErrorPage from "./components/error-page";
 import NotFoundPage from "./components/not-found-page";
-import { fetchContent } from "./lib/data";
-import { PostType } from "./types";
+
+import { fetchContent, fetchMultipleContent } from "./lib/data";
 
 const rootRoute = new RootRoute({
   component: () => <App />,
@@ -23,6 +24,7 @@ const indexRoute = new Route({
   getParentRoute: () => rootRoute,
   path: "/",
   component: () => <HomePage />,
+  loader: () => fetchMultipleContent(),
   pendingComponent: () => <>loading...</>,
   errorComponent: () => <ErrorPage />
 });
