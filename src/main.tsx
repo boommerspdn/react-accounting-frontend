@@ -10,32 +10,53 @@ import {
 import App from "./App";
 
 import HomePage from "./routes/root/page";
-import AboutPage from "./routes/about-page/page";
+import AboutPage from "./routes/about-us/page";
 import ErrorPage from "./components/error-page";
 import NotFoundPage from "./components/not-found-page";
 
-import { fetchContent, fetchMultipleContent } from "./lib/data";
+import { fetchContent, fetchLayout } from "./lib/data";
+import ServicesPage from "./routes/services/page";
+import ContactPage from "./routes/contact-us/page";
 
 const rootRoute = new RootRoute({
   component: () => <App />,
+  loader: () => fetchLayout(),
 });
 
 const indexRoute = new Route({
   getParentRoute: () => rootRoute,
   path: "/",
   component: () => <HomePage />,
-  loader: () => fetchMultipleContent(),
+  loader: () => fetchContent("/api/accounting-home-page", { populate: "*" }),
   pendingComponent: () => <>loading...</>,
-  errorComponent: () => <ErrorPage />
+  errorComponent: () => <ErrorPage />,
+});
+
+const servicesRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: "/services/$slug",
+  component: () => <ServicesPage />,
+  // loader: () => fetchContent("/api/accounting-home-page", { populate: "*" }),
+  pendingComponent: () => <>loading...</>,
+  errorComponent: () => <ErrorPage />,
 });
 
 const aboutRoute = new Route({
   getParentRoute: () => rootRoute,
   path: "/about-us",
   component: () => <AboutPage />,
-  loader: () => fetchContent("/posts", null),
+  loader: () => fetchContent("/api/accounting-about-page", null),
   pendingComponent: () => <>loading...</>,
-  errorComponent: () => <ErrorPage />
+  errorComponent: () => <ErrorPage />,
+});
+
+const contactRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: "/contact-us",
+  component: () => <ContactPage />,
+  loader: () => fetchContent("/api/accounting-contact-page", null),
+  pendingComponent: () => <>loading...</>,
+  errorComponent: () => <ErrorPage />,
 });
 
 const notFoundRoute = new NotFoundRoute({
@@ -43,7 +64,12 @@ const notFoundRoute = new NotFoundRoute({
   component: () => <NotFoundPage />,
 });
 
-const routeTree = rootRoute.addChildren([indexRoute, aboutRoute]);
+const routeTree = rootRoute.addChildren([
+  indexRoute,
+  aboutRoute,
+  contactRoute,
+  servicesRoute,
+]);
 
 const router = new Router({ routeTree, notFoundRoute });
 
