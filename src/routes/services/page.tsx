@@ -1,7 +1,8 @@
-const ServicesPage = () => {
-  return (
-    <div className='py-16'>ServicesPage</div>
-  )
-}
+import { useParams } from "@tanstack/react-router";
 
-export default ServicesPage
+const ServicesPage = () => {
+  const { slug } = useParams({ strict: false });
+  return <div className="py-16">{slug}</div>;
+};
+
+export default ServicesPage;

@@ -8,7 +8,6 @@ import SideBar from "./side-bar";
 import { Menu } from "lucide-react";
 import ServiceNav from "./service-nav";
 import { NavbarType, ServiceLinkType } from "@/types";
-import { Router } from "@tanstack/react-router";
 
 interface NavBarProps {
   navItems: NavbarType;
