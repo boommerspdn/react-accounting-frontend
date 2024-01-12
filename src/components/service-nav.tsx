@@ -18,7 +18,10 @@ const ServiceNav = ({ services }: ServiceNavProps) => {
     <NavigationMenu>
       <NavigationMenuList className="w-fit li-m-0">
         <NavigationMenuItem>
-          <Link to={`/services/$slug`} params={{slug: services.data[0].attributes.slug}}>
+          <Link
+            to={`/services/$slug`}
+            params={{ slug: services.data[0].attributes.slug }}
+          >
             <NavigationMenuTrigger className="p-0 m-0 h-auto bg-inherit text-base font-normal hover:bg-inherit hover:text-inherit focus:text-inherit focus:bg-inherit data-[active]:bg-inherit data-[state=open]:bg-inherit transition-none">
               บริการของเรา
             </NavigationMenuTrigger>

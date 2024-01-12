@@ -14,23 +14,23 @@ const HeroBanner = ({
   button,
 }: HeroBannerProps) => {
   return (
-    <div className="relative w-full h-[700px] flex justify-center items-center">
-      <div className="container flex flex-col justify-center items-center gap-y-12">
-        <div className="text-white text-4xl md:text-5xl lg:text-6xl text-center z-30">
+    <div className="relative flex h-[700px] w-full items-center justify-center">
+      <div className="container flex flex-col items-center justify-center gap-y-12">
+        <div className="z-30 text-center text-4xl text-white md:text-5xl lg:text-6xl">
           {title}
         </div>
-        <div className="text-white text-lg lg:text-xl text-center z-30">
+        <div className="z-30 text-center text-lg text-white lg:text-xl">
           {description}
         </div>
-        <button className="py-3 px-10 rounded-2xl bg-[#FFC940] font-bold md:text-lg cursor-pointer z-30">
+        <button className="z-30 cursor-pointer rounded-2xl bg-[#FFC940] px-10 py-3 font-bold md:text-lg">
           {button}
         </button>
       </div>
-      <div className="absolute w-full h-full bg-black -z-40 opacity-70 " />
+      <div className="absolute -z-40 h-full w-full bg-black opacity-70 " />
       <img
         src={`${import.meta.env.VITE_API_URL}${url}`}
         alt={alt}
-        className="absolute object-cover -z-50 w-full h-full"
+        className="absolute -z-50 h-full w-full object-cover"
       />
     </div>
   );

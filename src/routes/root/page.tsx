@@ -50,7 +50,10 @@ const HomePage = () => {
         title={content.data.attributes.section_2_title}
         description={content.data.attributes.section_2_body}
         image_url={content.data.attributes.section_2_image.data.attributes.url}
-        alt={content.data.attributes.section_2_image.data.attributes.alternativeText || ""}
+        alt={
+          content.data.attributes.section_2_image.data.attributes
+            .alternativeText || ""
+        }
       />
       <ThirdSection
         title={content.data.attributes.section_3_title}

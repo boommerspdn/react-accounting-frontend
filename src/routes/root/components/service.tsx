@@ -11,15 +11,15 @@ const Service = ({ title, body, path }: ServiceProps) => {
   return (
     <div className="min-w-[300px] space-y-2">
       <h1 className="text-2xl text-custom-blue">{title}</h1>
-      <p className="md:text-xl max-h-[10.75rem] md:max-h-none md:h-[200px] multiline-ellipsis">
+      <p className="multiline-ellipsis max-h-[10.75rem] md:h-[200px] md:max-h-none md:text-xl">
         {body}
       </p>
 
       <div className="flex justify-end">
         <Link
           to={`/services/$slug`}
-          params={{slug: path}}
-          className="flex items-center text-custom-blue text-lg w-fit"
+          params={{ slug: path }}
+          className="flex w-fit items-center text-lg text-custom-blue"
         >
           <p>อ่านเพิ่มเติม</p>
           <ChevronRight />
