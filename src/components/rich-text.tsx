@@ -1,6 +1,4 @@
-"use client";
-import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { cn } from "@/lib/utils";
 
@@ -16,7 +14,7 @@ const RichText = ({ data, className, listSpaceClass }: RictTextProps) => {
       <BlocksRenderer
         content={data}
         blocks={{
-          link: ({ children, url }) => <Link href={url}>{children}</Link>,
+          link: ({ children, url }) => <Link to={url}>{children}</Link>,
           heading: ({ children, level }) => {
             switch (level) {
               case 1:
@@ -38,13 +36,12 @@ const RichText = ({ data, className, listSpaceClass }: RictTextProps) => {
           },
           image: ({ image }) => {
             return (
-              <div className="relative w-full aspect-[4/2] my-3 rounded-sm">
-                <Image
+              <div className="relative my-3 aspect-[4/2] w-full rounded-sm">
+                <img
                   src={image.url}
                   alt={image.alternativeText || "Image for paragraph"}
-                  fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 60vw"
-                  className="object-cover"
+                  className="h-full w-full object-cover"
                 />
               </div>
             );

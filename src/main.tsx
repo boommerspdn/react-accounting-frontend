@@ -14,7 +14,12 @@ import AboutPage from "./routes/about-us/page";
 import ErrorPage from "./components/error-page";
 import NotFoundPage from "./components/not-found-page";
 
-import { fetchContent, fetchLayout } from "./lib/data";
+import {
+  fetchContactPage,
+  fetchHomePage,
+  fetchLayout,
+  fetchServicesPage,
+} from "./lib/data";
 import ServicesPage from "./routes/services/page";
 import ContactPage from "./routes/contact-us/page";
 
@@ -27,7 +32,7 @@ const indexRoute = new Route({
   getParentRoute: () => rootRoute,
   path: "/",
   component: () => <HomePage />,
-  loader: () => fetchContent("/api/accounting-home-page", { populate: "*" }),
+  loader: () => fetchHomePage(),
   pendingComponent: () => <>loading...</>,
   errorComponent: () => <ErrorPage />,
 });
@@ -36,7 +41,7 @@ const servicesRoute = new Route({
   getParentRoute: () => rootRoute,
   path: "/services/$slug",
   component: () => <ServicesPage />,
-  // loader: () => fetchContent("/api/accounting-home-page", { populate: "*" }),
+  loader: () => fetchServicesPage(),
   pendingComponent: () => <>loading...</>,
   errorComponent: () => <ErrorPage />,
 });
@@ -45,7 +50,7 @@ const aboutRoute = new Route({
   getParentRoute: () => rootRoute,
   path: "/about-us",
   component: () => <AboutPage />,
-  loader: () => fetchContent("/api/accounting-about-page", null),
+  // loader: () => fetchContactPage(),
   pendingComponent: () => <>loading...</>,
   errorComponent: () => <ErrorPage />,
 });
@@ -54,7 +59,7 @@ const contactRoute = new Route({
   getParentRoute: () => rootRoute,
   path: "/contact-us",
   component: () => <ContactPage />,
-  loader: () => fetchContent("/api/accounting-contact-page", null),
+  loader: () => fetchContactPage(),
   pendingComponent: () => <>loading...</>,
   errorComponent: () => <ErrorPage />,
 });
@@ -82,5 +87,5 @@ declare module "@tanstack/react-router" {
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>
+  </StrictMode>,
 );

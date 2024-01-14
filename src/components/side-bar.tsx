@@ -16,7 +16,7 @@ interface SideBarProps {
   service: string;
   about_us: string;
   contact_us: string;
-  services: ServiceLinkType;
+  services: ServiceLinkType[];
 }
 
 const SideBar = ({
@@ -41,21 +41,21 @@ const SideBar = ({
           </Link>
           <div className="flex flex-col space-y-1">
             <Link
-              href={`/services/${services.data[0].attributes.slug}`}
+              href={`/services/${services[0].slug}`}
               className="w-fit"
               onClick={() => setOpen(false)}
             >
               {service}
             </Link>
-            <ul className="flex flex-col gap-1 border-l-[1px] border-border ms-4">
-              {services.data.map((service) => (
+            <ul className="ms-4 flex flex-col gap-1 border-l-[1px] border-border">
+              {services.map((service) => (
                 <Link
-                  key={service.attributes.name}
-                  href={`/services/${service.attributes.slug}`}
+                  key={service.name}
+                  href={`/services/${service.slug}`}
                   className="w-fit ps-2"
                   onClick={() => setOpen(false)}
                 >
-                  <li className="m-0">{service.attributes.name}</li>
+                  <li className="m-0">{service.name}</li>
                 </Link>
               ))}
             </ul>

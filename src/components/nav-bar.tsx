@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-// import { usePathname } from "next/navigation";
-import { Link } from "@tanstack/react-router";
+import { Link, useMatchRoute } from "@tanstack/react-router";
 
 import { cn } from "@/lib/utils";
 
@@ -11,14 +10,15 @@ import { NavbarType, ServiceLinkType } from "@/types";
 
 interface NavBarProps {
   navItems: NavbarType;
-  services: ServiceLinkType;
+  services: ServiceLinkType[];
 }
 
 const NavBar = ({ navItems, services }: NavBarProps) => {
   const [color, setColor] = useState("");
   const [open, setOpen] = useState(false);
 
-  const pathname = window.location.pathname;
+  const matchRoute = useMatchRoute();
+  const pathname = matchRoute({ to: "/" });
   const animation = "transition-colors ease-in-out duration-500";
 
   useEffect(() => {
@@ -37,36 +37,54 @@ const NavBar = ({ navItems, services }: NavBarProps) => {
   return (
     <nav
       className={cn(
-        `h-16 fixed flex items-center justify-between w-full px-8 border-transparent border-b-[1px] z-50 ${
-          pathname === "/"
+        `fixed z-50 flex h-16 w-full items-center justify-between border-b-[1px] border-transparent px-8 ${
+          pathname
             ? `bg-transparent text-white ${animation}`
-            : "bg-white text-black border-border"
+            : "border-border bg-white text-black"
         }`,
-        color
+        color,
       )}
     >
-      <div className="flex gap-2 items-center justify-center">
+      <div className="flex items-center justify-center gap-2">
         <SideBar
           open={open}
           setOpen={setOpen}
-          website_name={navItems?.data.attributes.website_name}
-          home={navItems?.data.attributes.home}
-          service={navItems?.data.attributes.service}
-          contact_us={navItems?.data.attributes.contact_us}
-          about_us={navItems?.data.attributes.about_us}
+          website_name={navItems?.website_name}
+          home={navItems?.home}
+          service={navItems?.service}
+          contact_us={navItems?.contact_us}
+          about_us={navItems?.about_us}
           services={services}
         />
         <Menu
           onClick={() => setOpen(true)}
-          className="md:hidden cursor-pointer"
+          className="cursor-pointer md:hidden"
         />
-        <span className="font-bold">{navItems?.data.attributes.website_name}</span>
+        <span className="font-bold">{navItems?.website_name}</span>
       </div>
-      <div className="hidden md:flex items-center gap-8">
-        <Link to="/">{navItems?.data.attributes.home}</Link>
+      <div className="hidden items-center gap-8 md:flex">
+        <Link
+          className="hover:opacity-85"
+          to="/"
+          activeProps={{ style: { opacity: 0.85 } }}
+        >
+          {navItems?.home}
+        </Link>
         <ServiceNav services={services} />
-        <Link to="/contact-us">{navItems?.data.attributes.contact_us}</Link>
-        <Link to={"/about-us"}>{navItems?.data.attributes.about_us}</Link>
+        <Link
+          className="hover:opacity-85"
+          to="/contact-us"
+          activeProps={{ style: { opacity: 0.85 } }}
+        >
+          {navItems?.contact_us}
+        </Link>
+        <Link
+          className="hover:opacity-85"
+          to={"/about-us"}
+          activeProps={{ style: { opacity: 0.85 } }}
+        >
+          {navItems?.about_us}
+        </Link>
       </div>
     </nav>
   );

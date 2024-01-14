@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 interface ContactProps {
   package_type: {
     id: number;
@@ -19,7 +17,7 @@ const Contact = ({ package_type }: ContactProps) => {
       <a
         href={`${package_type[0].button_path}`}
         target="_blank"
-        className="py-3 px-10 rounded-2xl bg-[#FFC940] font-bold md:text-lg"
+        className="rounded-2xl bg-[#FFC940] px-10 py-3 font-bold md:text-lg"
       >
         {package_type[0].button_label}
       </a>

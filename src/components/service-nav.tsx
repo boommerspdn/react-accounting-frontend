@@ -10,33 +10,34 @@ import {
 } from "@/components/ui/navigation-menu";
 
 interface ServiceNavProps {
-  services: ServiceLinkType;
+  services: ServiceLinkType[];
 }
 
 const ServiceNav = ({ services }: ServiceNavProps) => {
   return (
     <NavigationMenu>
-      <NavigationMenuList className="w-fit li-m-0">
+      <NavigationMenuList className="li-m-0 w-fit">
         <NavigationMenuItem>
           <Link
             to={`/services/$slug`}
-            params={{ slug: services.data[0].attributes.slug }}
+            params={{ slug: services[0].slug }}
+            activeProps={{ style: { opacity: 0.85 } }}
           >
-            <NavigationMenuTrigger className="p-0 m-0 h-auto bg-inherit text-base font-normal hover:bg-inherit hover:text-inherit focus:text-inherit focus:bg-inherit data-[active]:bg-inherit data-[state=open]:bg-inherit transition-none">
+            <NavigationMenuTrigger className="m-0 h-auto bg-inherit p-0 text-base font-normal transition-none hover:bg-inherit hover:text-inherit hover:opacity-85 focus:bg-inherit focus:text-inherit data-[active]:bg-inherit data-[state=open]:bg-inherit">
               บริการของเรา
             </NavigationMenuTrigger>
           </Link>
           <NavigationMenuContent>
-            <ul className="w-[240px] p-2 space-y-1">
-              {services.data.map((service) => (
-                <li key={service.attributes.name} className="m-0">
+            <ul className="w-[240px] space-y-1 p-2">
+              {services.map((service) => (
+                <li key={service.name} className="m-0">
                   <NavigationMenuLink asChild>
                     <Link
                       to={`/services/$slug`}
-                      params={{ slug: service.attributes.slug }}
-                      className="h-full w-full flex p-1 rounded-md hover:bg-accent"
+                      params={{ slug: service.slug }}
+                      className="flex h-full w-full rounded-md p-1 hover:bg-accent"
                     >
-                      <p className="text-sm px-1">{service.attributes.name}</p>
+                      <p className="px-1 text-sm">{service.name}</p>
                     </Link>
                   </NavigationMenuLink>
                 </li>

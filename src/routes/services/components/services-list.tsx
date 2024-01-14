@@ -1,0 +1,30 @@
+import { Link } from "@tanstack/react-router";
+import { cn } from "@/lib/utils";
+import { ServiceLinkType } from "@/types";
+
+interface ServiceListProps {
+  slug: string;
+  services: ServiceLinkType[];
+}
+
+const ServicesList = ({ slug, services }: ServiceListProps) => {
+  return (
+    <>
+      {services.map((service, index) => (
+        <Link
+          key={index}
+          to={`/services/$slug`}
+          params={{ slug: service.slug }}
+          className={cn(
+            "text-muted-foreground hover:text-black/80",
+            service.slug === slug ? "text-black" : "",
+          )}
+        >
+          {service.name}
+        </Link>
+      ))}
+    </>
+  );
+};
+
+export default ServicesList;
