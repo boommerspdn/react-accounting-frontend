@@ -16,7 +16,7 @@ const ServicesList = ({ slug, services }: ServiceListProps) => {
           to={`/services/$slug`}
           params={{ slug: service.slug }}
           className={cn(
-            "text-muted-foreground hover:text-black/80",
+            "break-words text-muted-foreground hover:text-black/80",
             service.slug === slug ? "text-black" : "",
           )}
         >

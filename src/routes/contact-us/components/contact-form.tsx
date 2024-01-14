@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
+import * as z from "zod";
 
 import {
   Form,
@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Loader2, CheckCircle } from "lucide-react";
+import { Loader2 } from "lucide-react";
 
 const FormSchema = z.object({
   name: z

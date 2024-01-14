@@ -17,19 +17,19 @@ interface PackageListProps {
 
 const PackagesList = ({ package_type }: PackageListProps) => {
   const packageList = package_type.filter(
-    (item) => item.__component === "content.package-list"
+    (item) => item.__component === "content.package-list",
   );
 
   return (
-    <div className="flex justify-center flex-wrap gap-8 2xl:gap-16">
+    <div className="flex flex-wrap justify-center gap-8 2xl:gap-16">
       {packageList.map((item) => (
         <div
           key={item.id}
           className={cn(
-            `relative flex flex-col justify-between gap-4 p-4 border-border border-[1px] w-64 min-h-[26rem] rounded-3xl shadow-xl`,
+            `relative flex min-h-[26rem] w-64 flex-col justify-between gap-4 rounded-3xl border-[1px] border-border p-4 shadow-xl`,
             item.is_main === true
-              ? "bg-custom-blue 2xl:-top-6 text-white"
-              : "bg-white"
+              ? "bg-custom-blue text-white 2xl:-top-6"
+              : "bg-white",
           )}
         >
           <div className="text-center">
@@ -38,7 +38,7 @@ const PackagesList = ({ package_type }: PackageListProps) => {
               <span
                 className={cn(
                   `text-xl font-semibold`,
-                  item.is_main ? "text-white" : "text-custom-blue"
+                  item.is_main ? "text-white" : "text-custom-blue",
                 )}
               >
                 {item.package_price}
@@ -59,10 +59,10 @@ const PackagesList = ({ package_type }: PackageListProps) => {
             <a href={item.button_path} target="_blank" className="">
               <button
                 className={cn(
-                  `py-1 px-8 rounded-2xl`,
+                  `rounded-2xl px-8 py-1`,
                   !item.is_main
                     ? "bg-custom-blue text-white"
-                    : "bg-custom-yellow text-black"
+                    : "bg-custom-yellow text-black",
                 )}
               >
                 {item.button_label}

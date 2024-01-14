@@ -58,3 +58,11 @@ export const fetchContactPage = async () => {
 
   return { contact: flattenedContact, socials: flattenedSocials };
 };
+
+export const fetchAboutPage = async () => {
+  const about = await fetcher(
+    `${baseURL}/api/accounting-about-page?populate=*`,
+  );
+
+  return flattenAttributes(about.data);
+};

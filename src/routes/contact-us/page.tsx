@@ -1,5 +1,4 @@
 import Header from "@/components/header";
-import { Link, useLoaderData } from "@tanstack/react-router";
 import {
   Card,
   CardContent,
@@ -8,6 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { SocialType } from "@/types";
+import { useLoaderData } from "@tanstack/react-router";
 import ContactForm from "./components/contact-form";
 
 const ContactPage = () => {

@@ -10,7 +10,7 @@ interface ServiceProps {
 const Service = ({ title, body, path }: ServiceProps) => {
   return (
     <div className="min-w-[300px] space-y-2">
-      <h1 className="text-2xl text-custom-blue">{title}</h1>
+      <h1 className="line-clamp-1 text-2xl text-custom-blue">{title}</h1>
       <p className="multiline-ellipsis max-h-[10.75rem] md:h-[200px] md:max-h-none md:text-xl">
         {body}
       </p>

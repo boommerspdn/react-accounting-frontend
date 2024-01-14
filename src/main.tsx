@@ -15,6 +15,7 @@ import ErrorPage from "./components/error-page";
 import NotFoundPage from "./components/not-found-page";
 
 import {
+  fetchAboutPage,
   fetchContactPage,
   fetchHomePage,
   fetchLayout,
@@ -33,7 +34,6 @@ const indexRoute = new Route({
   path: "/",
   component: () => <HomePage />,
   loader: () => fetchHomePage(),
-  pendingComponent: () => <>loading...</>,
   errorComponent: () => <ErrorPage />,
 });
 
@@ -42,7 +42,6 @@ const servicesRoute = new Route({
   path: "/services/$slug",
   component: () => <ServicesPage />,
   loader: () => fetchServicesPage(),
-  pendingComponent: () => <>loading...</>,
   errorComponent: () => <ErrorPage />,
 });
 
@@ -50,8 +49,7 @@ const aboutRoute = new Route({
   getParentRoute: () => rootRoute,
   path: "/about-us",
   component: () => <AboutPage />,
-  // loader: () => fetchContactPage(),
-  pendingComponent: () => <>loading...</>,
+  loader: () => fetchAboutPage(),
   errorComponent: () => <ErrorPage />,
 });
 
@@ -60,7 +58,6 @@ const contactRoute = new Route({
   path: "/contact-us",
   component: () => <ContactPage />,
   loader: () => fetchContactPage(),
-  pendingComponent: () => <>loading...</>,
   errorComponent: () => <ErrorPage />,
 });
 

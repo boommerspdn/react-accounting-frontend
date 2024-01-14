@@ -1,10 +1,10 @@
-import Header from "@/components/header";
-import { ServiceLinkType, ServicePageType } from "@/types";
-import { useLoaderData, useParams } from "@tanstack/react-router";
-import ServicesList from "./components/services-list";
-import RichText from "@/components/rich-text";
 import Contact from "@/components/contact";
+import Header from "@/components/header";
+import RichText from "@/components/rich-text";
+import { ServicePageType } from "@/types";
+import { useLoaderData, useParams } from "@tanstack/react-router";
 import PackagesList from "./components/packages-list";
+import ServicesList from "./components/services-list";
 
 const ServicesPage = () => {
   const { slug } = useParams({ strict: false });
@@ -19,13 +19,11 @@ const ServicesPage = () => {
     slug: service.slug,
   }));
 
-  console.log(services);
-
   return (
     <div className="py-16">
       <Header title={serviceData[0].name} />
       <div className="container relative flex flex-row gap-2">
-        <div className="sticky top-[80px] hidden h-full w-[280px] text-xl md:flex md:shrink-0 md:flex-col md:gap-3">
+        <div className="sticky top-[80px] hidden h-full w-[280px] text-xl sm:inline-flex md:flex md:shrink-0 md:flex-col md:gap-3">
           <ServicesList slug={slug} services={servicesLink} />
         </div>
 
