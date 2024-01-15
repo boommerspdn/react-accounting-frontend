@@ -9,16 +9,4 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  build: {
-    rollupOptions: {
-      input: {
-        main: path.resolve(__dirname, "index.html"),
-        "about-us": path.resolve(__dirname, "src/routes/about-us/index.html"),
-        "contact-us": path.resolve(
-          __dirname,
-          "src/routes/contact-us/index.html",
-        ),
-      },
-    },
-  },
 });
