@@ -1,3 +1,5 @@
+import { Link } from "@tanstack/react-router";
+
 interface HeroBannerProps {
   url: string;
   alt: string;
@@ -22,9 +24,11 @@ const HeroBanner = ({
         <div className="z-30 text-center text-lg text-white lg:text-xl">
           {description}
         </div>
-        <button className="z-30 cursor-pointer rounded-2xl bg-[#FFC940] px-10 py-3 font-bold md:text-lg">
-          {button}
-        </button>
+        <Link to="/contact-us">
+          <button className="z-30 cursor-pointer rounded-2xl bg-[#FFC940] px-10 py-3 font-bold md:text-lg">
+            {button}
+          </button>
+        </Link>
       </div>
       <div className="absolute -z-40 h-full w-full bg-black opacity-70 " />
       <img

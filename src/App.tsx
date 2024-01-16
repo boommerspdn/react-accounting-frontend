@@ -1,6 +1,9 @@
 import "./App.css";
-import { Outlet, useLoaderData } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/router-devtools";
+import {
+  Outlet,
+  useLoaderData,
+  ScrollRestoration,
+} from "@tanstack/react-router";
 import NavBar from "./components/nav-bar";
 import { LayoutContentType } from "./types";
 import Footer from "./components/footer";
@@ -15,12 +18,17 @@ function App() {
     <>
       <HelmetProvider>
         <Helmet>
-          <title data-rh="true">Dynamic title</title>
+          <title data-rh="true">Fast On Time Accounting</title>
+          <link
+            rel="icon"
+            type="image/svg+xml"
+            href={`${import.meta.env.VITE_API_URL}${navbar.logo.url}`}
+          />
         </Helmet>
         <NavBar navItems={navbar} services={services} />
         <Outlet />
         <Footer />
-        <TanStackRouterDevtools />
+        <ScrollRestoration />
       </HelmetProvider>
     </>
   );

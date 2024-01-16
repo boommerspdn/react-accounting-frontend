@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet-async";
 
 const AboutPage = () => {
   const aboutUsData = useLoaderData({ from: "/about-us" });
-  console.log(aboutUsData.SEO.title);
+
   return (
     <>
       <Helmet>

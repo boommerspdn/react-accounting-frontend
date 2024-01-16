@@ -58,7 +58,6 @@ const ContactForm = ({ emailToRecieve }: { emailToRecieve: string }) => {
       from: "FAST ON TIME ACCOUNTING<contact@fastontime.co.th>",
       subject: "ข้อความใหม่จาก FAST ON TIME ACCOUNTING",
       html: `
-      <h1>${data.message}</h1>
       ${data.company ? `<p>${data.company}</p>` : ""}
       <p>ชื่อ : ${data.name}</p>
       <p>อีเมล : ${data.email}</p>
@@ -86,7 +85,6 @@ const ContactForm = ({ emailToRecieve }: { emailToRecieve: string }) => {
     } catch (e) {
       setIsSubmitting(false);
       toast.error("เกิดข้อผิดพลาด! ส่งอีเมลไม่สำเร็จ");
-      console.log(e);
     }
   };
 

@@ -41,7 +41,7 @@ const servicesRoute = new Route({
   getParentRoute: () => rootRoute,
   path: "/services/$slug",
   component: () => <ServicesPage />,
-  loader: () => fetchServicesPage(),
+  loader: ({ params }) => fetchServicesPage(params.slug),
   errorComponent: () => <ErrorPage />,
 });
 

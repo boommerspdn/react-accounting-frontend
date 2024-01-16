@@ -39,12 +39,20 @@ export const fetchHomePage = async () => {
   return { home: flattenedHome, services: flattenedServices };
 };
 
-export const fetchServicesPage = async () => {
-  const services = await fetcher(
-    `${baseURL}/api/accounting-services?populate=*`,
-  );
+export const fetchServicesPage = async (slug: string) => {
+  const [service, servicesLink] = await Promise.all([
+    fetcher(
+      `${baseURL}/api/accounting-services?filters[slug][$eq]=${slug}&populate=*`,
+    ),
+    fetcher(
+      `${baseURL}/api/accounting-services?fields[0]=id&fields[1]=name&fields[3]=slug`,
+    ),
+  ]);
 
-  return flattenAttributes(services.data);
+  const flattenedService = flattenAttributes(service.data);
+  const flattenedServicesLink = flattenAttributes(servicesLink.data);
+
+  return { service: flattenedService, servicesLink: flattenedServicesLink };
 };
 
 export const fetchContactPage = async () => {

@@ -36,12 +36,13 @@ const SideBar = ({
           <SheetTitle className="text-left">{website_name}</SheetTitle>
         </SheetHeader>
         <div className="flex flex-col gap-2 pt-4">
-          <Link href={"/"} className="w-fit" onClick={() => setOpen(false)}>
+          <Link to={"/"} className="w-fit" onClick={() => setOpen(false)}>
             {home}
           </Link>
           <div className="flex flex-col space-y-1">
             <Link
-              href={`/services/${services[0].slug}`}
+              to={`/services/$slug`}
+              params={{ slug: services[0].slug }}
               className="w-fit"
               onClick={() => setOpen(false)}
             >
@@ -51,7 +52,8 @@ const SideBar = ({
               {services.map((service) => (
                 <Link
                   key={service.name}
-                  href={`/services/${service.slug}`}
+                  to={`/services/$slug`}
+                  params={{ slug: service.slug }}
                   className="w-fit ps-2"
                   onClick={() => setOpen(false)}
                 >
@@ -61,14 +63,14 @@ const SideBar = ({
             </ul>
           </div>
           <Link
-            href={"/contact-us"}
+            to={"/contact-us"}
             className="w-fit"
             onClick={() => setOpen(false)}
           >
             {contact_us}
           </Link>
           <Link
-            href={"/about-us"}
+            to={"/about-us"}
             className="w-fit"
             onClick={() => setOpen(false)}
           >
