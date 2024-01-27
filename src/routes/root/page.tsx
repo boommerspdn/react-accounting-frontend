@@ -19,7 +19,7 @@ const HomePage = () => {
         <meta charSet="utf-8" />
         <title>{home.SEO.title}</title>
         <meta name="description" content={home.SEO.description} />
-        <link rel="canonical" href="http://fastontime.co.th" />
+        <link rel="canonical" href="https://fastontime.co.th" />
       </Helmet>
       <div className="flex flex-col">
         <HeroBanner

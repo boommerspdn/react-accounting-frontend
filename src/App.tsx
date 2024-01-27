@@ -18,7 +18,6 @@ function App() {
     <>
       <HelmetProvider>
         <Helmet>
-          <title data-rh="true">Fast On Time Accounting</title>
           <link
             rel="icon"
             type="image/svg+xml"

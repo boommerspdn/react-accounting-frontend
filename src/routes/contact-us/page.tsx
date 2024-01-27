@@ -22,7 +22,7 @@ const ContactPage = () => {
         <meta charSet="utf-8" />
         <title>{contactUsData.SEO.title}</title>
         <meta name="description" content={contactUsData.SEO.description} />
-        <link rel="canonical" href="http://fastontime.co.th/contact-us" />
+        <link rel="canonical" href="https://fastontime.co.th/contact-us" />
       </Helmet>
       <div className="py-16">
         <Header title={contactUsData.header} />

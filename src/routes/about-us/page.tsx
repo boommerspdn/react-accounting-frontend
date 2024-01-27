@@ -12,7 +12,7 @@ const AboutPage = () => {
         <meta charSet="utf-8" />
         <title>{aboutUsData.SEO.title}</title>
         <meta name="description" content={aboutUsData.SEO.description} />
-        <link rel="canonical" href="http://fastontime.co.th/about-us" />
+        <link rel="canonical" href="https://fastontime.co.th/about-us" />
       </Helmet>
       <div className="py-16">
         <Header title={aboutUsData.header} />

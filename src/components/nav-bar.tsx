@@ -58,11 +58,11 @@ const NavBar = ({ navItems, services }: NavBarProps) => {
         />
         <Menu
           onClick={() => setOpen(true)}
-          className="cursor-pointer md:hidden"
+          className="cursor-pointer lg:hidden"
         />
         <span className="font-bold">{navItems?.website_name}</span>
       </div>
-      <div className="hidden items-center gap-8 md:flex">
+      <div className="hidden items-center gap-8 lg:flex">
         <Link
           className="hover:opacity-85"
           to="/"

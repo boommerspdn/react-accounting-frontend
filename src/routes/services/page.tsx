@@ -19,7 +19,10 @@ const ServicesPage = () => {
         <meta charSet="utf-8" />
         <title>{service[0].SEO.title}</title>
         <meta name="description" content={service[0].SEO.description} />
-        <link rel="canonical" href={`http://fastontime.co.th/${slug}`} />
+        <link
+          rel="canonical"
+          href={`https://fastontime.co.th/services/${slug}`}
+        />
       </Helmet>
       <div className="py-16">
         <Header title={service[0].name} />
