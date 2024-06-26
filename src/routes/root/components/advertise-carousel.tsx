@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@/components/ui/card";
+import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
   CarouselContent,
@@ -6,20 +6,36 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { ImageType } from "@/types";
 
-const AdvertiseCarousel = () => {
+const AdvertiseCarousel = ({
+  className,
+  promotions,
+}: {
+  className?: string;
+  promotions: ImageType[];
+}) => {
   return (
-    <Carousel className="size-full">
+    <Carousel
+      opts={{
+        loop: true,
+      }}
+      plugins={[
+        Autoplay({
+          delay: 3500,
+          stopOnInteraction: false,
+        }),
+      ]}
+      className={className}
+    >
       <CarouselContent>
-        {Array.from({ length: 5 }).map((_, index) => (
-          <CarouselItem key={index}>
-            <div className="p-1">
-              <Card>
-                <CardContent className="flex items-center justify-center p-6">
-                  <span className="text-4xl font-semibold">{index + 1}</span>
-                </CardContent>
-              </Card>
-            </div>
+        {promotions.map((promotion) => (
+          <CarouselItem>
+            <img
+              src={`${import.meta.env.VITE_API_URL}${promotion.url}`}
+              alt={promotion.alternativeText || "promotion"}
+              className="aspect-[7/2] w-full rounded object-cover"
+            />
           </CarouselItem>
         ))}
       </CarouselContent>

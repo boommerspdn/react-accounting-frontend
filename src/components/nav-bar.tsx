@@ -60,7 +60,18 @@ const NavBar = ({ navItems, services }: NavBarProps) => {
           onClick={() => setOpen(true)}
           className="cursor-pointer lg:hidden"
         />
-        <span className="font-bold">{navItems?.website_name}</span>
+        <Link to="/" className="flex items-center gap-2">
+          <img
+            src={`${import.meta.env.VITE_API_URL}${navItems.logo.url}`}
+            alt={
+              `${import.meta.env.VITE_API_URL}${
+                navItems.logo.alternativeText
+              }` || "logo"
+            }
+            className="h-8 object-contain"
+          />
+          <span className="font-bold">{navItems?.website_name}</span>
+        </Link>
       </div>
       <div className="hidden items-center gap-8 lg:flex">
         <Link

@@ -47,6 +47,7 @@ const HomePage = () => {
           title={home.section_1_title}
           description={home.section_1_description}
           services={services}
+          promotions={home.promotion_ads}
         />
         <SecondSection
           title={home.section_2_title}

@@ -34,7 +34,7 @@ const PackagesList = ({ package_type }: PackageListProps) => {
         >
           <div className="text-center">
             <h1 className="text-xl">{item.package_name}</h1>
-            <div>
+            <div className="space-x-1">
               <span
                 className={cn(
                   `text-xl font-semibold`,

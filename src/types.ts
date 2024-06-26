@@ -20,6 +20,7 @@ export type HomePageType = {
   section_3_button: string;
   section_3_button_url: string;
   section_3_title: string;
+  promotion_ads: ImageType[];
 } & TimeStampType;
 
 export type LayoutContentType = {

@@ -18,17 +18,29 @@ const RichText = ({ data, className, listSpaceClass }: RictTextProps) => {
           heading: ({ children, level }) => {
             switch (level) {
               case 1:
-                return <h1 className="text-7xl">{children}</h1>;
+                return (
+                  <h1 className="text-7xl text-custom-blue">{children}</h1>
+                );
               case 2:
-                return <h2 className="text-6xl">{children}</h2>;
+                return (
+                  <h2 className="text-6xl text-custom-blue">{children}</h2>
+                );
               case 3:
-                return <h3 className="text-5xl">{children}</h3>;
+                return (
+                  <h3 className="text-5xl text-custom-blue">{children}</h3>
+                );
               case 4:
-                return <h4 className="text-4xl">{children}</h4>;
+                return (
+                  <h4 className="text-4xl text-custom-blue">{children}</h4>
+                );
               case 5:
-                return <h5 className="text-3xl">{children}</h5>;
+                return (
+                  <h5 className="text-3xl text-custom-blue">{children}</h5>
+                );
               case 6:
-                return <h6 className="text-2xl">{children}</h6>;
+                return (
+                  <h6 className="text-2xl text-custom-blue">{children}</h6>
+                );
             }
           },
           paragraph: ({ children }) => {
@@ -36,12 +48,11 @@ const RichText = ({ data, className, listSpaceClass }: RictTextProps) => {
           },
           image: ({ image }) => {
             return (
-              <div className="relative my-3 aspect-[4/2] w-full rounded-sm">
+              <div className="relative my-3 w-full rounded-sm">
                 <img
                   src={image.url}
                   alt={image.alternativeText || "Image for paragraph"}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 60vw"
-                  className="h-full w-full object-cover"
+                  className="h-auto w-full object-contain"
                 />
               </div>
             );
@@ -49,13 +60,13 @@ const RichText = ({ data, className, listSpaceClass }: RictTextProps) => {
           list: ({ format, children }) => {
             if (format === "unordered")
               return (
-                <ul className={cn(`list-disc space-y-5`, listSpaceClass)}>
+                <ul className={cn(`list-disc space-y-4`, listSpaceClass)}>
                   {children}
                 </ul>
               );
             if (format === "ordered")
               return (
-                <ol className={cn(`list-decimal space-y-5`, listSpaceClass)}>
+                <ol className={cn(`list-decimal space-y-4`, listSpaceClass)}>
                   {children}
                 </ol>
               );
