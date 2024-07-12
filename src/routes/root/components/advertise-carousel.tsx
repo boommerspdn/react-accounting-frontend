@@ -30,11 +30,11 @@ const AdvertiseCarousel = ({
     >
       <CarouselContent>
         {promotions.map((promotion) => (
-          <CarouselItem>
+          <CarouselItem key={promotion.name}>
             <img
               src={`${import.meta.env.VITE_API_URL}${promotion.url}`}
               alt={promotion.alternativeText || "promotion"}
-              className="aspect-[7/2] w-full rounded object-cover"
+              className=" w-full rounded object-contain"
             />
           </CarouselItem>
         ))}

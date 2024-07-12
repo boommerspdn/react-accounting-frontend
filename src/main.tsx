@@ -27,6 +27,7 @@ import ContactPage from "./routes/contact-us/page";
 const rootRoute = new RootRoute({
   component: () => <App />,
   loader: () => fetchLayout(),
+  staleTime: 10_000,
 });
 
 const indexRoute = new Route({
@@ -34,6 +35,7 @@ const indexRoute = new Route({
   path: "/",
   component: () => <HomePage />,
   loader: () => fetchHomePage(),
+  staleTime: 10_000,
   errorComponent: () => <ErrorPage />,
 });
 
