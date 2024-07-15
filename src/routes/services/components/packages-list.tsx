@@ -28,7 +28,7 @@ const PackagesList = ({ package_type }: PackageListProps) => {
           className={cn(
             `relative flex min-h-[26rem] w-64 flex-col justify-between gap-4 rounded-3xl border-[1px] border-border p-4 shadow-xl`,
             item.is_main === true
-              ? "bg-custom-blue text-white 2xl:-top-6"
+              ? "bg-custom-blue text-white md:-top-6"
               : "bg-white",
           )}
         >

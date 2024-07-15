@@ -23,11 +23,17 @@ import {
 } from "./lib/data";
 import ServicesPage from "./routes/services/page";
 import ContactPage from "./routes/contact-us/page";
+import { Hourglass } from "lucide-react";
 
 const rootRoute = new RootRoute({
   component: () => <App />,
   loader: () => fetchLayout(),
-  staleTime: 10_000,
+  staleTime: Infinity,
+  pendingComponent: () => (
+    <div className="flex size-full items-center justify-center bg-custom-blue">
+      <Hourglass className="animate-pulse text-custom-yellow" size={75} />
+    </div>
+  ),
 });
 
 const indexRoute = new Route({
@@ -35,7 +41,7 @@ const indexRoute = new Route({
   path: "/",
   component: () => <HomePage />,
   loader: () => fetchHomePage(),
-  staleTime: 10_000,
+  staleTime: Infinity,
   errorComponent: () => <ErrorPage />,
 });
 
@@ -44,6 +50,7 @@ const servicesRoute = new Route({
   path: "/services/$slug",
   component: () => <ServicesPage />,
   loader: ({ params }) => fetchServicesPage(params.slug),
+  staleTime: Infinity,
   errorComponent: () => <ErrorPage />,
 });
 
@@ -52,6 +59,7 @@ const aboutRoute = new Route({
   path: "/about-us",
   component: () => <AboutPage />,
   loader: () => fetchAboutPage(),
+  staleTime: Infinity,
   errorComponent: () => <ErrorPage />,
 });
 
@@ -60,6 +68,7 @@ const contactRoute = new Route({
   path: "/contact-us",
   component: () => <ContactPage />,
   loader: () => fetchContactPage(),
+  staleTime: Infinity,
   errorComponent: () => <ErrorPage />,
 });
 

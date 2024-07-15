@@ -9,7 +9,7 @@ interface ServiceListProps {
 
 const ServicesList = ({ slug, services }: ServiceListProps) => {
   return (
-    <>
+    <div className="flex flex-col gap-2">
       {services.map((service, index) => (
         <Link
           key={index}
@@ -23,7 +23,7 @@ const ServicesList = ({ slug, services }: ServiceListProps) => {
           {service.name}
         </Link>
       ))}
-    </>
+    </div>
   );
 };
 
