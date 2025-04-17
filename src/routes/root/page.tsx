@@ -13,6 +13,13 @@ const HomePage = () => {
     services: ServiceCard[];
   };
 
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Fast on Time Accounting",
+    url: "https://fastontime.co.th/",
+  };
+
   return (
     <>
       <Helmet>
@@ -20,6 +27,10 @@ const HomePage = () => {
         <title>{home.SEO.title}</title>
         <meta name="description" content={home.SEO.description} />
         <link rel="canonical" href="https://fastontime.co.th" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+        />
       </Helmet>
       <div className="flex flex-col">
         <HeroBanner
