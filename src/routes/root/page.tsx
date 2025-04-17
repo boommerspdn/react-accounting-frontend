@@ -16,8 +16,8 @@ const HomePage = () => {
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Fast on Time Accounting",
-    url: "https://fastontime.co.th/",
+    name: "BPR Service",
+    url: "https://bprservice.co.th/",
   };
 
   return (
@@ -26,7 +26,7 @@ const HomePage = () => {
         <meta charSet="utf-8" />
         <title>{home.SEO.title}</title>
         <meta name="description" content={home.SEO.description} />
-        <link rel="canonical" href="https://fastontime.co.th" />
+        <link rel="canonical" href="https://bprservice.co.th" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}

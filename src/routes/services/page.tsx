@@ -21,7 +21,7 @@ const ServicesPage = () => {
         <meta name="description" content={service[0].SEO.description} />
         <link
           rel="canonical"
-          href={`https://fastontime.co.th/services/${slug}`}
+          href={`https://bprservice.co.th/services/${slug}`}
         />
       </Helmet>
       <div className="py-16">

@@ -55,8 +55,8 @@ const ContactForm = ({ emailToRecieve }: { emailToRecieve: string }) => {
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
     const emailBody = {
       to: emailToRecieve,
-      from: "FAST ON TIME ACCOUNTING<contact@fastontime.co.th>",
-      subject: "ข้อความใหม่จาก FAST ON TIME ACCOUNTING",
+      from: "BPR Service<contact@fastontime.co.th>",
+      subject: "ข้อความใหม่จาก BPR Service",
       html: `
       ${data.company ? `<p>${data.company}</p>` : ""}
       <p>ชื่อ : ${data.name}</p>

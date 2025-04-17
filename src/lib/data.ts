@@ -6,10 +6,10 @@ const baseURL = import.meta.env.VITE_API_URL;
 
 export const fetchLayout = async () => {
   const [navbar, services, footer, socials] = await Promise.all([
-    fetcher(`${baseURL}/api/accounting-navigation-bar?populate=*`),
-    fetcher(`${baseURL}/api/accounting-services?fields[0]=name&fields[1]=slug`),
-    fetcher(`${baseURL}/api/accounting-footer?populate=*`),
-    fetcher(`${baseURL}/api/accounting-social-networks?populate=*`),
+    fetcher(`${baseURL}/api/bprservice-navigation-bar?populate=*`),
+    fetcher(`${baseURL}/api/bprservice-services?fields[0]=name&fields[1]=slug`),
+    fetcher(`${baseURL}/api/bprservice-footer?populate=*`),
+    fetcher(`${baseURL}/api/bprservice-social-networks?populate=*`),
   ]);
 
   const flattenedNavbar = flattenAttributes(navbar.data);
@@ -27,9 +27,9 @@ export const fetchLayout = async () => {
 
 export const fetchHomePage = async () => {
   const [home, services] = await Promise.all([
-    fetcher(`${baseURL}/api/accounting-home-page?populate=*`),
+    fetcher(`${baseURL}/api/bprservice-home-page?populate=*`),
     fetcher(
-      `${baseURL}/api/accounting-services?populate=*&fields[0]=name&fields[1]=description&fields[2]=slug`,
+      `${baseURL}/api/bprservice-services?populate=*&fields[0]=name&fields[1]=description&fields[2]=slug`,
     ),
   ]);
 
@@ -42,10 +42,10 @@ export const fetchHomePage = async () => {
 export const fetchServicesPage = async (slug: string) => {
   const [service, servicesLink] = await Promise.all([
     fetcher(
-      `${baseURL}/api/accounting-services?filters[slug][$eq]=${slug}&populate=*`,
+      `${baseURL}/api/bprservice-services?filters[slug][$eq]=${slug}&populate=*`,
     ),
     fetcher(
-      `${baseURL}/api/accounting-services?fields[0]=id&fields[1]=name&fields[3]=slug`,
+      `${baseURL}/api/bprservice-services?fields[0]=id&fields[1]=name&fields[3]=slug`,
     ),
   ]);
 
@@ -57,8 +57,8 @@ export const fetchServicesPage = async (slug: string) => {
 
 export const fetchContactPage = async () => {
   const [contact, socials] = await Promise.all([
-    fetcher(`${baseURL}/api/accounting-contact-page?populate=*`),
-    fetcher(`${baseURL}/api/accounting-social-networks?populate=*`),
+    fetcher(`${baseURL}/api/bprservice-contact-page?populate=*`),
+    fetcher(`${baseURL}/api/bprservice-social-networks?populate=*`),
   ]);
 
   const flattenedContact = flattenAttributes(contact.data);
@@ -69,7 +69,7 @@ export const fetchContactPage = async () => {
 
 export const fetchAboutPage = async () => {
   const about = await fetcher(
-    `${baseURL}/api/accounting-about-page?populate=*`,
+    `${baseURL}/api/bprservice-about-page?populate=*`,
   );
 
   return flattenAttributes(about.data);
