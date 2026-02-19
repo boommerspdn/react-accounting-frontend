@@ -18,11 +18,7 @@ function App() {
     <>
       <HelmetProvider>
         <Helmet>
-          <link
-            rel="icon"
-            type="image/svg+xml"
-            href={`${import.meta.env.VITE_API_URL}${navbar.logo.url}`}
-          />
+          <link rel="icon" type="image/svg+xml" href={`${navbar.logo.url}`} />
         </Helmet>
         <NavBar navItems={navbar} services={services} />
         <Outlet />

@@ -23,17 +23,16 @@ import {
 } from "./lib/data";
 import ServicesPage from "./routes/services/page";
 import ContactPage from "./routes/contact-us/page";
-import { Hourglass } from "lucide-react";
 
 const rootRoute = new RootRoute({
   component: () => <App />,
   loader: () => fetchLayout(),
   staleTime: Infinity,
-  pendingComponent: () => (
-    <div className="flex size-full items-center justify-center bg-custom-blue">
-      <Hourglass className="animate-pulse text-custom-yellow" size={75} />
-    </div>
-  ),
+  // pendingComponent: () => (
+  //   <div className="flex size-full items-center justify-center bg-custom-blue">
+  //     <Hourglass className="animate-pulse text-custom-yellow" size={75} />
+  //   </div>
+  // ),
 });
 
 const indexRoute = new Route({

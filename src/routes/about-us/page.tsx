@@ -26,9 +26,7 @@ const AboutPage = () => {
               <div className="relative h-full w-full">
                 {aboutUsData.header_image && (
                   <img
-                    src={`${import.meta.env.VITE_API_URL}${
-                      aboutUsData.header_image.url
-                    }`}
+                    src={`${aboutUsData.header_image.url}`}
                     alt={
                       aboutUsData.header_image.alternativeText || "Header Image"
                     }

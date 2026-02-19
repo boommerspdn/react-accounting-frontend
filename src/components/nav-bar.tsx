@@ -62,12 +62,8 @@ const NavBar = ({ navItems, services }: NavBarProps) => {
         />
         <Link to="/" className="flex items-center gap-2">
           <img
-            src={`${import.meta.env.VITE_API_URL}${navItems.logo.url}`}
-            alt={
-              `${import.meta.env.VITE_API_URL}${
-                navItems.logo.alternativeText
-              }` || "logo"
-            }
+            src={`${navItems.logo.url}`}
+            alt={`${navItems.logo.alternativeText}` || "logo"}
             className="h-8 object-contain"
           />
           <span className="font-bold">{navItems?.website_name}</span>

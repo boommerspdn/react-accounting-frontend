@@ -15,7 +15,7 @@ const Footer = () => {
             <h1 className="text-xl">{footer.company_info}</h1>
             <div className="flex gap-2">
               <img
-                src={`${import.meta.env.VITE_API_URL}${navbar.logo.url}`}
+                src={`${navbar.logo.url}`}
                 alt={navbar.logo.url || "Logo"}
                 width={25}
                 height={25}
@@ -86,7 +86,7 @@ const Footer = () => {
                 className="h-fit"
               >
                 <img
-                  src={`${import.meta.env.VITE_API_URL}${social.image.url}`}
+                  src={`${social.image.url}`}
                   alt={social.platform || "Social Media"}
                   width={35}
                   height={35}

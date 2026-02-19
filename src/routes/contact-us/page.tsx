@@ -62,7 +62,7 @@ const ContactPage = () => {
                   className="h-fit"
                 >
                   <img
-                    src={`${import.meta.env.VITE_API_URL}${social.image.url}`}
+                    src={`${social.image.url}`}
                     alt={social.platform || "Social Media"}
                     width={35}
                     height={35}

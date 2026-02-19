@@ -32,7 +32,7 @@ const HeroBanner = ({
       </div>
       <div className="absolute -z-40 h-full w-full bg-black opacity-70 " />
       <img
-        src={`${import.meta.env.VITE_API_URL}${url}`}
+        src={`${url}`}
         alt={alt}
         className="absolute -z-50 h-full w-full object-cover"
       />

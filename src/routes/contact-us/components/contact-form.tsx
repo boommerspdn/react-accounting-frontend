@@ -55,7 +55,7 @@ const ContactForm = ({ emailToRecieve }: { emailToRecieve: string }) => {
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
     const emailBody = {
       to: emailToRecieve,
-      from: "FAST ON TIME ACCOUNTING<contact@fastontime.co.th>",
+      // from: "FAST ON TIME ACCOUNTING<contact@fastontime.co.th>",
       subject: "ข้อความใหม่จาก FAST ON TIME ACCOUNTING",
       html: `
       ${data.company ? `<p>${data.company}</p>` : ""}
@@ -68,7 +68,7 @@ const ContactForm = ({ emailToRecieve }: { emailToRecieve: string }) => {
     };
     setIsSubmitting(true);
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/email`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -76,6 +76,7 @@ const ContactForm = ({ emailToRecieve }: { emailToRecieve: string }) => {
         },
         body: JSON.stringify(emailBody),
       });
+      // console.log(res);
       if (!res.ok) {
         throw new Error();
       }

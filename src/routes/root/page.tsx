@@ -15,7 +15,7 @@ const HomePage = () => {
 
   const schemaData = {
     "@context": "https://schema.org",
-    "@type": "WebSite",
+    "@type": "LocalBusiness",
     name: "Fast on Time Accounting",
     url: "https://fastontime.co.th/",
   };
