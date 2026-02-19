@@ -2,16 +2,32 @@ import qs from "qs";
 import { flattenAttributes } from "./utils";
 
 const baseURL = import.meta.env.VITE_API_URL;
+const STALE_TIME = 15 * 60 * 1000; // 15 minutes in milliseconds
 
-// Helper to build clean query strings
+// Internal Cache Store
+const cache = new Map<string, { data: any; timestamp: number }>();
+
 const buildQuery = (obj: object) =>
   qs.stringify(obj, { encodeValuesOnly: true });
 
-const fetcher = (url: string) =>
-  fetch(url).then((res) => {
-    if (!res.ok) throw new Error(`Failed to fetch: ${res.statusText}`);
-    return res.json();
-  });
+const fetcher = async (url: string) => {
+  const now = Date.now();
+  const cached = cache.get(url);
+
+  // Return cached data if it's still fresh
+  if (cached && now - cached.timestamp < STALE_TIME) {
+    return cached.data;
+  }
+
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Failed to fetch: ${res.statusText}`);
+
+  const data = await res.json();
+
+  // Store in cache
+  cache.set(url, { data, timestamp: now });
+  return data;
+};
 
 export const fetchLayout = async () => {
   const navQuery = buildQuery({ populate: { logo: { fields: ["url"] } } });
@@ -21,7 +37,7 @@ export const fetchLayout = async () => {
   const [navbar, services, footer, socials] = await Promise.all([
     fetcher(`${baseURL}/api/accounting-navigation-bar?${navQuery}`),
     fetcher(`${baseURL}/api/accounting-services?${serviceQuery}`),
-    fetcher(`${baseURL}/api/accounting-footer`), // No populate needed
+    fetcher(`${baseURL}/api/accounting-footer`),
     fetcher(`${baseURL}/api/accounting-social-networks?${socialQuery}`),
   ]);
 
@@ -43,7 +59,6 @@ export const fetchHomePage = async () => {
     },
   });
 
-  // performance fix: removed populate=* from services list
   const servicesQuery = buildQuery({
     fields: ["name", "description", "slug"],
   });
@@ -75,14 +90,14 @@ export const fetchServicesPage = async (slug: string) => {
 
   const linksQuery = buildQuery({ fields: ["name", "slug"] });
 
-  const [service, servicesLink] = await Promise.all([
+  const [serviceRes, servicesLinkRes] = await Promise.all([
     fetcher(`${baseURL}/api/accounting-services?${serviceQuery}`),
     fetcher(`${baseURL}/api/accounting-services?${linksQuery}`),
   ]);
 
   return {
-    service: flattenAttributes(service.data),
-    servicesLink: flattenAttributes(servicesLink.data),
+    service: flattenAttributes(serviceRes.data || []),
+    servicesLink: flattenAttributes(servicesLinkRes.data || []),
   };
 };
 
