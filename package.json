@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsx scripts/fetch-build-data.ts && tsc && vite build",
+    "build": "tsx scripts/fetch-build-data.ts && tsc && vite build && tsx scripts/prerender-html.ts",
     "build:data": "tsx scripts/fetch-build-data.ts",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -49,6 +49,7 @@
     "postcss": "^8.4.33",
     "prettier": "^3.1.1",
     "prettier-plugin-tailwindcss": "^0.5.11",
+    "puppeteer": "^23.0.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.2.2",
     "tsx": "^4.19.0",
