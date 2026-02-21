@@ -6,6 +6,7 @@ import {
   Route,
   RootRoute,
   NotFoundRoute,
+  ScrollRestoration,
 } from "@tanstack/react-router";
 import App from "./App";
 
@@ -49,7 +50,10 @@ const indexRoute = new Route({
   errorComponent: () => <ErrorPage />,
   head: ({ loaderData }) => {
     const data = loaderData as
-      | { home: { SEO: { title: string; description: string } }; services: unknown }
+      | {
+          home: { SEO: { title: string; description: string } };
+          services: unknown;
+        }
       | undefined;
     if (!data?.home?.SEO) return {};
     const schemaData = {
@@ -136,7 +140,10 @@ const contactRoute = new Route({
   errorComponent: () => <ErrorPage />,
   head: ({ loaderData }) => {
     const data = loaderData as
-      | { contact: { SEO: { title: string; description: string } }; socials?: unknown }
+      | {
+          contact: { SEO: { title: string; description: string } };
+          socials?: unknown;
+        }
       | undefined;
     if (!data?.contact?.SEO) return {};
     return {
@@ -164,7 +171,11 @@ const routeTree = rootRoute.addChildren([
   servicesRoute,
 ]);
 
-const router = new Router({ routeTree, notFoundRoute });
+const router = new Router({
+  routeTree,
+  notFoundRoute,
+  scrollRestoration: true,
+});
 
 declare module "@tanstack/react-router" {
   interface Register {
