@@ -5,13 +5,16 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-/** When VITE_API_URL is localhost:1337, prepend it to relative image URLs (e.g. from Strapi). Otherwise leave url as-is. */
+/** Resolve image URL: use as-is if local (/build-images/) or full URL; else prepend Strapi base in dev. */
 export function getImageSrc(url: string | undefined): string {
   if (!url) return "";
+  // Build-time downloaded images: always use as-is (same origin)
+  if (url.startsWith("/build-images/")) return url;
+  // Full URL (e.g. production Strapi): use as-is
+  if (url.startsWith("http")) return url;
+  // Relative Strapi path in dev: prepend API base so Strapi can serve it
   const apiUrl = (import.meta.env.VITE_API_URL ?? "").replace(/\/$/, "");
-  if (apiUrl.includes("localhost:1337") && url.startsWith("/")) {
-    return `${apiUrl}${url}`;
-  }
+  if (apiUrl && url.startsWith("/")) return `${apiUrl}${url}`;
   return url;
 }
 

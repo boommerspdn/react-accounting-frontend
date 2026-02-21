@@ -20,6 +20,7 @@ import {
   fetchLayout,
   fetchServicesPage,
 } from "./lib/data";
+import { preloaded } from "./lib/preloaded";
 import ServicesPage from "./routes/services/page";
 import ContactPage from "./routes/contact-us/page";
 import { LayoutContentType } from "./types";
@@ -27,7 +28,7 @@ import { getImageSrc } from "./lib/utils";
 
 const rootRoute = createRootRoute({
   component: () => <App />,
-  loader: () => fetchLayout(),
+  loader: async () => preloaded.getLayout() ?? fetchLayout(),
   staleTime: Infinity,
   notFoundComponent: () => <NotFoundPage />,
   head: ({ loaderData }) => {
@@ -45,7 +46,7 @@ const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/",
   component: () => <HomePage />,
-  loader: () => fetchHomePage(),
+  loader: async () => preloaded.getHome() ?? fetchHomePage(),
   staleTime: Infinity,
   errorComponent: () => <ErrorPage />,
   head: ({ loaderData }) => {
@@ -83,7 +84,8 @@ const servicesRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/services/$slug",
   component: () => <ServicesPage />,
-  loader: ({ params }) => fetchServicesPage(params.slug),
+  loader: async ({ params }) =>
+    preloaded.getServicesPage(params.slug) ?? fetchServicesPage(params.slug),
   staleTime: Infinity,
   errorComponent: () => <ErrorPage />,
   head: ({ loaderData, params }) => {
@@ -112,7 +114,7 @@ const aboutRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/about-us",
   component: () => <AboutPage />,
-  loader: () => fetchAboutPage(),
+  loader: async () => preloaded.getAbout() ?? fetchAboutPage(),
   staleTime: Infinity,
   errorComponent: () => <ErrorPage />,
   head: ({ loaderData }) => {
@@ -135,7 +137,7 @@ const contactRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/contact-us",
   component: () => <ContactPage />,
-  loader: () => fetchContactPage(),
+  loader: async () => preloaded.getContact() ?? fetchContactPage(),
   staleTime: Infinity,
   errorComponent: () => <ErrorPage />,
   head: ({ loaderData }) => {

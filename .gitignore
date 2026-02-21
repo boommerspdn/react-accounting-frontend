@@ -9,6 +9,7 @@ lerna-debug.log*
 
 node_modules
 dist
+public/build-images
 dist-ssr
 *.local
 .env
