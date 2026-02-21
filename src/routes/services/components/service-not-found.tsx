@@ -9,7 +9,7 @@ const ServiceNotFound = () => {
         <p className="text-2xl">
           ไม่พบการบริการที่คุณตามหา หรือลิงค์ไม่ถูกต้อง
         </p>
-        <Link href={"/"} className="my-4">
+        <Link to="/" className="my-4">
           <button className="rounded-md border-[1px] border-custom-yellow px-4 py-2">
             กลับสู่หน้าหลัก
           </button>

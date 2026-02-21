@@ -3,11 +3,11 @@ import {
   Outlet,
   useLoaderData,
   ScrollRestoration,
+  HeadContent,
 } from "@tanstack/react-router";
 import NavBar from "./components/nav-bar";
 import { LayoutContentType } from "./types";
 import Footer from "./components/footer";
-import { Helmet, HelmetProvider } from "react-helmet-async";
 
 function App() {
   const { navbar, services }: LayoutContentType = useLoaderData({
@@ -16,15 +16,11 @@ function App() {
 
   return (
     <>
-      <HelmetProvider>
-        <Helmet>
-          <link rel="icon" type="image/svg+xml" href={`${navbar.logo.url}`} />
-        </Helmet>
-        <NavBar navItems={navbar} services={services} />
-        <Outlet />
-        <Footer />
-        <ScrollRestoration />
-      </HelmetProvider>
+      <HeadContent />
+      <NavBar navItems={navbar} services={services} />
+      <Outlet />
+      <Footer />
+      <ScrollRestoration />
     </>
   );
 }

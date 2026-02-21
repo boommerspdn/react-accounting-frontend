@@ -5,7 +5,6 @@ import HeroBanner from "./components/hero-banner";
 import HeroSection from "./components/hero-section";
 import SecondSection from "./components/second-section";
 import ThirdSection from "./components/third-section";
-import { Helmet } from "react-helmet-async";
 
 const HomePage = () => {
   const { home, services } = useLoaderData({ from: "/" }) as {
@@ -13,26 +12,8 @@ const HomePage = () => {
     services: ServiceCard[];
   };
 
-  const schemaData = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "Fast on Time Accounting",
-    url: "https://fastontime.co.th/",
-  };
-
   return (
-    <>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>{home.SEO.title}</title>
-        <meta name="description" content={home.SEO.description} />
-        <link rel="canonical" href="https://fastontime.co.th" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-        />
-      </Helmet>
-      <div className="flex flex-col">
+    <div className="flex flex-col">
         <HeroBanner
           url={home.banner_image.url}
           alt={home.banner_image.alternativeText || "Hero Background"}
@@ -73,7 +54,6 @@ const HomePage = () => {
           path={home.section_3_button_url}
         />
       </div>
-    </>
   );
 };
 

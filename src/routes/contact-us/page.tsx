@@ -9,7 +9,6 @@ import {
 import { SocialType } from "@/types";
 import { useLoaderData } from "@tanstack/react-router";
 import ContactForm from "./components/contact-form";
-import { Helmet } from "react-helmet-async";
 
 const ContactPage = () => {
   const { contact: contactUsData, socials } = useLoaderData({
@@ -17,14 +16,7 @@ const ContactPage = () => {
   }) as { contact: any; socials: SocialType[] };
 
   return (
-    <>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>{contactUsData.SEO.title}</title>
-        <meta name="description" content={contactUsData.SEO.description} />
-        <link rel="canonical" href="https://fastontime.co.th/contact-us" />
-      </Helmet>
-      <div className="py-16">
+    <div className="py-16">
         <Header title={contactUsData.header} />
         <div className="container grid grid-cols-1 gap-8 lg:grid-cols-5">
           <div className="space-y-2 text-center lg:col-span-3 lg:text-start">
@@ -96,7 +88,6 @@ const ContactPage = () => {
           </div>
         </div>
       </div>
-    </>
   );
 };
 

@@ -23,16 +23,21 @@ import {
 } from "./lib/data";
 import ServicesPage from "./routes/services/page";
 import ContactPage from "./routes/contact-us/page";
+import { LayoutContentType } from "./types";
 
 const rootRoute = new RootRoute({
   component: () => <App />,
   loader: () => fetchLayout(),
   staleTime: Infinity,
-  // pendingComponent: () => (
-  //   <div className="flex size-full items-center justify-center bg-custom-blue">
-  //     <Hourglass className="animate-pulse text-custom-yellow" size={75} />
-  //   </div>
-  // ),
+  head: ({ loaderData }) => {
+    const layout = loaderData as LayoutContentType | undefined;
+    if (!layout?.navbar?.logo?.url) return {};
+    return {
+      links: [
+        { rel: "icon", type: "image/svg+xml", href: layout.navbar.logo.url },
+      ],
+    };
+  },
 });
 
 const indexRoute = new Route({
@@ -42,6 +47,32 @@ const indexRoute = new Route({
   loader: () => fetchHomePage(),
   staleTime: Infinity,
   errorComponent: () => <ErrorPage />,
+  head: ({ loaderData }) => {
+    const data = loaderData as
+      | { home: { SEO: { title: string; description: string } }; services: unknown }
+      | undefined;
+    if (!data?.home?.SEO) return {};
+    const schemaData = {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      name: "Fast on Time Accounting",
+      url: "https://fastontime.co.th/",
+    };
+    return {
+      meta: [
+        { charSet: "utf-8" },
+        { title: data.home.SEO.title },
+        { name: "description", content: data.home.SEO.description },
+      ],
+      links: [{ rel: "canonical", href: "https://fastontime.co.th" }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify(schemaData),
+        },
+      ],
+    };
+  },
 });
 
 const servicesRoute = new Route({
@@ -51,6 +82,26 @@ const servicesRoute = new Route({
   loader: ({ params }) => fetchServicesPage(params.slug),
   staleTime: Infinity,
   errorComponent: () => <ErrorPage />,
+  head: ({ loaderData, params }) => {
+    const data = loaderData as
+      | { service: Array<{ SEO: { title: string; description: string } }> }
+      | undefined;
+    const slug = params?.slug;
+    if (!data?.service?.[0]?.SEO || slug == null) return {};
+    return {
+      meta: [
+        { charSet: "utf-8" },
+        { title: data.service[0].SEO.title },
+        { name: "description", content: data.service[0].SEO.description },
+      ],
+      links: [
+        {
+          rel: "canonical",
+          href: `https://fastontime.co.th/services/${slug}`,
+        },
+      ],
+    };
+  },
 });
 
 const aboutRoute = new Route({
@@ -60,6 +111,20 @@ const aboutRoute = new Route({
   loader: () => fetchAboutPage(),
   staleTime: Infinity,
   errorComponent: () => <ErrorPage />,
+  head: ({ loaderData }) => {
+    const data = loaderData as
+      | { SEO: { title: string; description: string }; header?: unknown }
+      | undefined;
+    if (!data?.SEO) return {};
+    return {
+      meta: [
+        { charSet: "utf-8" },
+        { title: data.SEO.title },
+        { name: "description", content: data.SEO.description },
+      ],
+      links: [{ rel: "canonical", href: "https://fastontime.co.th/about-us" }],
+    };
+  },
 });
 
 const contactRoute = new Route({
@@ -69,6 +134,22 @@ const contactRoute = new Route({
   loader: () => fetchContactPage(),
   staleTime: Infinity,
   errorComponent: () => <ErrorPage />,
+  head: ({ loaderData }) => {
+    const data = loaderData as
+      | { contact: { SEO: { title: string; description: string } }; socials?: unknown }
+      | undefined;
+    if (!data?.contact?.SEO) return {};
+    return {
+      meta: [
+        { charSet: "utf-8" },
+        { title: data.contact.SEO.title },
+        { name: "description", content: data.contact.SEO.description },
+      ],
+      links: [
+        { rel: "canonical", href: "https://fastontime.co.th/contact-us" },
+      ],
+    };
+  },
 });
 
 const notFoundRoute = new NotFoundRoute({

@@ -5,7 +5,6 @@ import { ServiceLinkType, ServicePageType } from "@/types";
 import { useLoaderData, useParams } from "@tanstack/react-router";
 import PackagesList from "./components/packages-list";
 import ServicesList from "./components/services-list";
-import { Helmet } from "react-helmet-async";
 
 const ServicesPage = () => {
   const { slug } = useParams({ strict: false });
@@ -14,21 +13,11 @@ const ServicesPage = () => {
   }) as { service: ServicePageType[]; servicesLink: ServiceLinkType[] };
 
   return (
-    <>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>{service[0].SEO.title}</title>
-        <meta name="description" content={service[0].SEO.description} />
-        <link
-          rel="canonical"
-          href={`https://fastontime.co.th/services/${slug}`}
-        />
-      </Helmet>
-      <div className="py-16">
+    <div className="py-16">
         <Header title={service[0].name} />
         <div className="container relative flex flex-row gap-2">
           <div className="sticky top-[80px] hidden h-full w-[280px] text-xl sm:inline-flex md:flex md:shrink-0 md:flex-col md:gap-3">
-            <ServicesList slug={slug} services={servicesLink} />
+            <ServicesList slug={slug ?? ""} services={servicesLink} />
           </div>
 
           <div className="grid w-full grid-cols-5 gap-x-16 gap-y-8">
@@ -55,7 +44,6 @@ const ServicesPage = () => {
           </div>
         </div>
       </div>
-    </>
   );
 };
 

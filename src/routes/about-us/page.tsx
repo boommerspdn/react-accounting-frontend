@@ -1,20 +1,12 @@
 import { useLoaderData } from "@tanstack/react-router";
 import Header from "@/components/header";
 import RichText from "@/components/rich-text";
-import { Helmet } from "react-helmet-async";
 
 const AboutPage = () => {
   const aboutUsData = useLoaderData({ from: "/about-us" });
 
   return (
-    <>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>{aboutUsData.SEO.title}</title>
-        <meta name="description" content={aboutUsData.SEO.description} />
-        <link rel="canonical" href="https://fastontime.co.th/about-us" />
-      </Helmet>
-      <div className="py-16">
+    <div className="py-16">
         <Header title={aboutUsData.header} />
         <div className="container grid grid-cols-1 gap-8 md:gap-12 lg:grid-cols-2 lg:gap-4">
           <div className="col-span-1 h-fit">
@@ -50,7 +42,6 @@ const AboutPage = () => {
           </div>
         </div>
       </div>
-    </>
   );
 };
 
