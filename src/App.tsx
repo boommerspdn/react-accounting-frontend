@@ -1,10 +1,5 @@
 import "./App.css";
-import {
-  Outlet,
-  useLoaderData,
-  ScrollRestoration,
-  HeadContent,
-} from "@tanstack/react-router";
+import { Outlet, useLoaderData, HeadContent } from "@tanstack/react-router";
 import NavBar from "./components/nav-bar";
 import { LayoutContentType } from "./types";
 import Footer from "./components/footer";
@@ -20,7 +15,6 @@ function App() {
       <NavBar navItems={navbar} services={services} />
       <Outlet />
       <Footer />
-      <ScrollRestoration />
     </>
   );
 }
