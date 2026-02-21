@@ -1,3 +1,4 @@
+import { getImageSrc } from "@/lib/utils";
 import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
@@ -32,7 +33,7 @@ const AdvertiseCarousel = ({
         {promotions.map((promotion) => (
           <CarouselItem key={promotion.name}>
             <img
-              src={`${promotion.url}`}
+              src={getImageSrc(promotion.url)}
               alt={promotion.alternativeText || "promotion"}
               className=" w-full rounded object-contain"
             />

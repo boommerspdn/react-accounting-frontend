@@ -1,3 +1,4 @@
+import { getImageSrc } from "@/lib/utils";
 import { useLoaderData } from "@tanstack/react-router";
 import Header from "@/components/header";
 import RichText from "@/components/rich-text";
@@ -18,7 +19,7 @@ const AboutPage = () => {
               <div className="relative h-full w-full">
                 {aboutUsData.header_image && (
                   <img
-                    src={`${aboutUsData.header_image.url}`}
+                    src={getImageSrc(aboutUsData.header_image.url)}
                     alt={
                       aboutUsData.header_image.alternativeText || "Header Image"
                     }

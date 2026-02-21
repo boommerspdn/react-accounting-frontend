@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useMatchRoute } from "@tanstack/react-router";
 
-import { cn } from "@/lib/utils";
+import { cn, getImageSrc } from "@/lib/utils";
 
 import SideBar from "./side-bar";
 import { Menu } from "lucide-react";
@@ -62,7 +62,7 @@ const NavBar = ({ navItems, services }: NavBarProps) => {
         />
         <Link to="/" className="flex items-center gap-2">
           <img
-            src={`${navItems.logo.url}`}
+            src={getImageSrc(navItems.logo.url)}
             alt={`${navItems.logo.alternativeText}` || "logo"}
             className="h-8 object-contain"
           />

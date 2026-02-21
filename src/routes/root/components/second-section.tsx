@@ -1,3 +1,5 @@
+import { getImageSrc } from "@/lib/utils";
+
 interface SecondSectionProps {
   title: string;
   description: string;
@@ -18,7 +20,7 @@ const SecondSection = ({
           <div className="relative aspect-[3/2] w-full sm:w-3/4 md:w-full">
             <img
               className="rounded object-cover"
-              src={`${image_url}`}
+              src={getImageSrc(image_url)}
               alt={alt || "Why you should work with us"}
             />
           </div>

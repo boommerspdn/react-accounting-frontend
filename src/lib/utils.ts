@@ -5,6 +5,16 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+/** When VITE_API_URL is localhost:1337, prepend it to relative image URLs (e.g. from Strapi). Otherwise leave url as-is. */
+export function getImageSrc(url: string | undefined): string {
+  if (!url) return "";
+  const apiUrl = (import.meta.env.VITE_API_URL ?? "").replace(/\/$/, "");
+  if (apiUrl.includes("localhost:1337") && url.startsWith("/")) {
+    return `${apiUrl}${url}`;
+  }
+  return url;
+}
+
 export function flattenAttributes(data: any): any {
   // Base case for recursion
   if (!data) return null;

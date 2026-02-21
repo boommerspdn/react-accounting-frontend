@@ -1,3 +1,4 @@
+import { getImageSrc } from "@/lib/utils";
 import { Link } from "@tanstack/react-router";
 
 interface HeroBannerProps {
@@ -32,7 +33,7 @@ const HeroBanner = ({
       </div>
       <div className="absolute -z-40 h-full w-full bg-black opacity-70 " />
       <img
-        src={`${url}`}
+        src={getImageSrc(url)}
         alt={alt}
         className="absolute -z-50 h-full w-full object-cover"
       />

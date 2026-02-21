@@ -1,3 +1,4 @@
+import { getImageSrc } from "@/lib/utils";
 import { LayoutContentType } from "@/types";
 import { Link, useLoaderData } from "@tanstack/react-router";
 
@@ -15,7 +16,7 @@ const Footer = () => {
             <h1 className="text-xl">{footer.company_info}</h1>
             <div className="flex gap-2">
               <img
-                src={`${navbar.logo.url}`}
+                src={getImageSrc(navbar.logo.url)}
                 alt={navbar.logo.url || "Logo"}
                 width={25}
                 height={25}
@@ -86,7 +87,7 @@ const Footer = () => {
                 className="h-fit"
               >
                 <img
-                  src={`${social.image.url}`}
+                  src={getImageSrc(social.image.url)}
                   alt={social.platform || "Social Media"}
                   width={35}
                   height={35}

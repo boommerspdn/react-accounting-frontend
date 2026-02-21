@@ -1,4 +1,5 @@
 import Header from "@/components/header";
+import { getImageSrc } from "@/lib/utils";
 import {
   Card,
   CardContent,
@@ -54,7 +55,7 @@ const ContactPage = () => {
                   className="h-fit"
                 >
                   <img
-                    src={`${social.image.url}`}
+                    src={getImageSrc(social.image.url)}
                     alt={social.platform || "Social Media"}
                     width={35}
                     height={35}
