@@ -1,4 +1,5 @@
 import "./App.css";
+import { createPortal } from "react-dom";
 import { Outlet, useLoaderData, HeadContent } from "@tanstack/react-router";
 import NavBar from "./components/nav-bar";
 import { LayoutContentType } from "./types";
@@ -11,7 +12,8 @@ function App() {
 
   return (
     <>
-      <HeadContent />
+      {typeof document !== "undefined" &&
+        createPortal(<HeadContent />, document.head)}
       <NavBar navItems={navbar} services={services} />
       <Outlet />
       <Footer />

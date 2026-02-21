@@ -23,6 +23,7 @@ import {
 import ServicesPage from "./routes/services/page";
 import ContactPage from "./routes/contact-us/page";
 import { LayoutContentType } from "./types";
+import { getImageSrc } from "./lib/utils";
 
 const rootRoute = createRootRoute({
   component: () => <App />,
@@ -34,7 +35,7 @@ const rootRoute = createRootRoute({
     if (!layout?.navbar?.logo?.url) return {};
     return {
       links: [
-        { rel: "icon", type: "image/svg+xml", href: layout.navbar.logo.url },
+        { rel: "icon", type: "image/svg+xml", href: getImageSrc(layout.navbar.logo.url) },
       ],
     };
   },
