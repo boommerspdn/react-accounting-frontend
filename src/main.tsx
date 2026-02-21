@@ -2,11 +2,9 @@ import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import {
   RouterProvider,
-  Router,
-  Route,
-  RootRoute,
-  NotFoundRoute,
-  ScrollRestoration,
+  createRouter,
+  createRoute,
+  createRootRoute,
 } from "@tanstack/react-router";
 import App from "./App";
 
@@ -26,10 +24,11 @@ import ServicesPage from "./routes/services/page";
 import ContactPage from "./routes/contact-us/page";
 import { LayoutContentType } from "./types";
 
-const rootRoute = new RootRoute({
+const rootRoute = createRootRoute({
   component: () => <App />,
   loader: () => fetchLayout(),
   staleTime: Infinity,
+  notFoundComponent: () => <NotFoundPage />,
   head: ({ loaderData }) => {
     const layout = loaderData as LayoutContentType | undefined;
     if (!layout?.navbar?.logo?.url) return {};
@@ -41,7 +40,7 @@ const rootRoute = new RootRoute({
   },
 });
 
-const indexRoute = new Route({
+const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/",
   component: () => <HomePage />,
@@ -79,7 +78,7 @@ const indexRoute = new Route({
   },
 });
 
-const servicesRoute = new Route({
+const servicesRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/services/$slug",
   component: () => <ServicesPage />,
@@ -108,7 +107,7 @@ const servicesRoute = new Route({
   },
 });
 
-const aboutRoute = new Route({
+const aboutRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/about-us",
   component: () => <AboutPage />,
@@ -131,7 +130,7 @@ const aboutRoute = new Route({
   },
 });
 
-const contactRoute = new Route({
+const contactRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/contact-us",
   component: () => <ContactPage />,
@@ -159,11 +158,6 @@ const contactRoute = new Route({
   },
 });
 
-const notFoundRoute = new NotFoundRoute({
-  getParentRoute: () => rootRoute,
-  component: () => <NotFoundPage />,
-});
-
 const routeTree = rootRoute.addChildren([
   indexRoute,
   aboutRoute,
@@ -171,9 +165,8 @@ const routeTree = rootRoute.addChildren([
   servicesRoute,
 ]);
 
-const router = new Router({
+const router = createRouter({
   routeTree,
-  notFoundRoute,
   scrollRestoration: true,
 });
 
